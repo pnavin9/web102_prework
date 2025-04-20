@@ -23,7 +23,7 @@ The following **optional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented features (might take a moment to load):
+Here's a walkthrough of implemented features (might take a moment to load and don't forget to turn on audio):
 
 [Demo](https://github.com/user-attachments/assets/59b73880-8a63-4499-af66-96253fdb58ba)
 
