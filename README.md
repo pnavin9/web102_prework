@@ -24,11 +24,9 @@ The following **optional** features are implemented:
 ## Video Walkthrough
 
 Here's a walkthrough of implemented features:
-[!(renamed webm)](Screen-Recording.mp4)
-<video width="600" controls>
-  <source src="Screen-Recording.webm" type="video/webm">
-  Your browser does not support the video tag.
-</video>
+
+https://github.com/pnavin9/web102_prework/blob/main/Screen-Recording.mp4
+
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with ...  
 <!-- Recommended tools:
