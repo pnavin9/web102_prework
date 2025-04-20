@@ -23,12 +23,12 @@ The following **optional** features are implemented:
 
 ## Video Walkthrough
 
-Here's a walkthrough of implemented features:
+Here's a walkthrough of implemented features (might take a moment to load):
 
-https://github.com/pnavin9/web102_prework/blob/main/Screen-Recording.mp4
+[Demo](https://github.com/user-attachments/assets/59b73880-8a63-4499-af66-96253fdb58ba)
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  
+Video created with https://screen-recorder.com/
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
