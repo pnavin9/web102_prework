@@ -46,6 +46,11 @@ function addGamesToPage(games) {
         <img src="${game.img}" class = "game-img" />
         <h3>${game.name}</h3>
         <p>${game.description}</p>
+        <div class="hover-info">
+                <p><strong>Backers:</strong> ${game.backers.toLocaleString()}</p>
+                <p><strong>Pledged:</strong> $${game.pledged.toLocaleString()}</p>
+                <p><strong>Goal:</strong> $${game.goal.toLocaleString()}</p>
+        </div>
         `;
 
         // append the game to the games-container
@@ -92,7 +97,7 @@ raisedCard.innerHTML = `
 const gamesCard = document.getElementById("num-games");
 const total_number_of_games = GAMES_JSON.reduce((number_of_games, game) => {
     return number_of_games + 1
-}, 0);;
+}, 0);
 gamesCard.innerHTML = `
 <p>${total_number_of_games}</p>
 `
@@ -138,15 +143,42 @@ function showAllGames() {
     addGamesToPage(GAMES_JSON);
 }
 
+function filterAndSortGames() {
+    let filteredGames = GAMES_JSON.filter((game) =>
+        game.name.toLowerCase().includes(searchInput.value.toLowerCase())
+    );
+
+    const sortBy = sortSelect.value;
+    const order = sortOrder.value;
+
+    filteredGames.sort((a, b) => {
+        if (order === "asc") {
+            return a[sortBy] - b[sortBy];
+        } else {
+            return b[sortBy] - a[sortBy];
+        }
+    });
+
+    deleteChildElements(gamesContainer);
+    addGamesToPage(filteredGames);
+}
+
 // select each button in the "Our Games" section
 const unfundedBtn = document.getElementById("unfunded-btn");
 const fundedBtn = document.getElementById("funded-btn");
 const allBtn = document.getElementById("all-btn");
+const searchInput = document.getElementById("search-input");
+const sortSelect = document.getElementById("sort-select");
+const sortOrder = document.getElementById("sort-order");
+
 
 // add event listeners with the correct functions to each button
 unfundedBtn.addEventListener("click",filterUnfundedOnly)
 fundedBtn.addEventListener("click",filterFundedOnly)
 allBtn.addEventListener("click",showAllGames)
+searchInput.addEventListener("input", filterAndSortGames);
+sortSelect.addEventListener("change", filterAndSortGames);
+sortOrder.addEventListener("change", filterAndSortGames);
 
 /*************************************************************************************
  * Challenge 6: Add more information at the top of the page about the company.
@@ -157,12 +189,20 @@ allBtn.addEventListener("click",showAllGames)
 const descriptionContainer = document.getElementById("description-container");
 
 // use filter or reduce to count the number of unfunded games
-
+const total_number_of_unfunded_games = GAMES_JSON.reduce((number_of_games, game) => {
+    const number_of_unfunded_games = game.pledged < game.goal ? number_of_games + 1 : number_of_games;
+    return number_of_unfunded_games;
+}, 0);
 
 // create a string that explains the number of unfunded games using the ternary operator
-
+const displayStr = `A total of $${total_funds.toLocaleString('en-US')} has been raised for ${total_number_of_games.toLocaleString('en-US')}. ${
+    total_number_of_unfunded_games > 0
+      ? `Currently ${total_number_of_unfunded_games} game${total_number_of_unfunded_games > 1 ? 's' : ''} remain${total_number_of_unfunded_games > 1 ? '' : 's'} unfunded. We need your help to fund these amazing games!`
+      : 'Enjoy the amazing games!'
+}`;
 
 // create a new DOM element containing the template string and append it to the description container
+descriptionContainer.innerHTML += `<p>${displayStr} </p>`;
 
 /************************************************************************************
  * Challenge 7: Select & display the top 2 games
@@ -177,7 +217,10 @@ const sortedGames =  GAMES_JSON.sort( (item1, item2) => {
 });
 
 // use destructuring and the spread operator to grab the first and second games
+const [mostFunded, secondMostFunded, ...rest] = sortedGames;
 
 // create a new element to hold the name of the top pledge game, then append it to the correct element
+firstGameContainer.innerHTML += `<p>${mostFunded.name}</p>`;
 
 // do the same for the runner up item
+secondGameContainer.innerHTML += `<p>${secondMostFunded.name}</p>`;

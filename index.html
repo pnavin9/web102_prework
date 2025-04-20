@@ -18,7 +18,7 @@
     <div id="description-container">
         <p>The purpose of our company is to fund independent games. We've been in operation for 12 years.</p>
     </div>
-
+   
     <!-- top games & other interesting stats -->
     <h2>Stats</h2>
     <div class="stats-container">
@@ -50,6 +50,22 @@
     <!-- list of games funded by Sea Monster -->
     <h2>Our Games</h2>
     <p>Check out each of our games below!</p>
+    <div id="search-container">
+        <input type="text" id="search-input" placeholder="Search for a game..." />
+        <div id="sort-container">
+            <label for="sort-select">Sort by:</label>
+            <select id="sort-select">
+                <option value="pledged">Pledged</option>
+                <option value="goal">Goal</option>
+                <option value="backers">Backers</option>
+            </select>
+        
+            <select id="sort-order">
+                <option value="desc">Descending</option>
+                <option value="asc">Ascending</option>
+            </select>
+        </div>
+    </div>
     <div id="button-container">
         <button id="unfunded-btn">Show Unfunded Only</button>
         <button id="funded-btn">Show Funded Only</button>
